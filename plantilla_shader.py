@@ -1,3 +1,4 @@
+from turtle import color
 import OpenGL.GL as gl
 import glfw
 import numpy as np
@@ -6,6 +7,7 @@ from pyexpat import model
 from re import M
 from Shader import *
 from Modelo import *
+from Triangulo import *
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -50,8 +52,8 @@ def main():
     shader = Shader(vertex_shader_source, fragment_shader_source)
 
     posicion_id = gl.glGetAttribLocation(shader.shader_program, "position")
-
-    modelo = Modelo(shader, posicion_id)
+    color_id = gl.glGetAttribLocation(shader.shader_program, "color")
+    modelo = Triangulo(shader, posicion_id, color_id)
 
     # Draw loop
     while not glfw.window_should_close(window):
@@ -76,3 +78,4 @@ def framebuffer_size_callbak(window, width, height):
 
 if __name__ == '__main__':
     main()
+
